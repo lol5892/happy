@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мирону 1 годик! · Приглашение</title>
+  <meta name="description" content="Приглашение на первый день рождения Мирона — 20 июня 2026" />
+  <meta name="theme-color" content="#d8ecfb" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content="Мирону 1 годик! · Приглашение" />
+  <meta property="og:description" content="Приглашение на первый день рождения Мирона — 20 июня 2026" />
+  <meta property="og:image" content="assets/photos/hero.jpg" />
+  <link rel="icon" href="assets/invitation.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/invitation.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comfortaa:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Навигация по сайту">
+    <a class="nav-brand" href="#">Мироша · 1 годик</a>
+    <div class="nav-links">
+      <a href="#story">История</a>
+      <a href="#countdown">Отсчёт</a>
+      <a href="#details">Детали</a>
+      <a href="#family">Семья</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#rsvp">Подтвердить присутствие</a>
+    </div>
+  </nav>
+
+  <!-- Плавающие шарики на фоне всей страницы -->
+  <div class="floating-balloons" aria-hidden="true">
+    <span class="balloon b-yellow"></span>
+    <span class="balloon b-blue"></span>
+    <span class="balloon b-yellow"></span>
+    <span class="balloon b-blue"></span>
+    <span class="balloon b-yellow"></span>
+  </div>
+
+  <!-- ====================== HERO ====================== -->
+  <header class="hero">
+    <!-- Гирлянда (флажки) -->
+    <div class="bunting" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span>
+    </div>
+
+    <div class="hero-stars" aria-hidden="true">
+      <span class="star s1">★</span>
+      <span class="star s2">✦</span>
+      <span class="star s3">★</span>
+      <span class="star s4">✦</span>
+      <span class="star s5">★</span>
+    </div>
+
+    <div class="hero-inner">
+      <p class="hero-pre reveal">Приглашаю тебя<br />на мой первый</p>
+      <h1 class="hero-title reveal">
+        <span class="word-day">ДЕНЬ</span>
+        <span class="word-birth">РОЖДЕНИЯ!</span>
+      </h1>
+
+      <div class="cloud-badge reveal">
+        <svg class="cloud-badge__bear" viewBox="0 0 200 200" aria-hidden="true">
+          <defs>
+            <radialGradient id="bearFur" cx="38%" cy="30%" r="68%">
+              <stop offset="0%" stop-color="#e8f4fc" />
+              <stop offset="55%" stop-color="#d8ecfb" />
+              <stop offset="100%" stop-color="#bcdcf5" />
+            </radialGradient>
+            <radialGradient id="bearEar" cx="40%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#d8ecfb" />
+              <stop offset="100%" stop-color="#bcdcf5" />
+            </radialGradient>
+            <radialGradient id="bearInnerEar" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffe39a" />
+              <stop offset="100%" stop-color="#f6c338" />
+            </radialGradient>
+            <radialGradient id="bearMuzzle" cx="50%" cy="38%" r="58%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="100%" stop-color="#eef7fd" />
+            </radialGradient>
+            <radialGradient id="bearHeadShine" cx="35%" cy="28%" r="45%">
+              <stop offset="0%" stop-color="#fff" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="48" cy="48" r="30" fill="url(#bearEar)" stroke="#8ec3ec" stroke-width="3" stroke-dasharray="7 5" />
+          <circle cx="152" cy="48" r="30" fill="url(#bearEar)" stroke="#8ec3ec" stroke-width="3" stroke-dasharray="7 5" />
+          <circle cx="48" cy="48" r="17" fill="url(#bearInnerEar)" />
+          <circle cx="152" cy="48" r="17" fill="url(#bearInnerEar)" />
+          <ellipse cx="100" cy="112" rx="78" ry="72" fill="url(#bearFur)" stroke="#8ec3ec" stroke-width="3" stroke-dasharray="7 5" />
+          <ellipse cx="100" cy="112" rx="78" ry="72" fill="url(#bearHeadShine)" />
+          <ellipse cx="100" cy="138" rx="52" ry="36" fill="url(#bearMuzzle)" />
+          <circle cx="58" cy="90" r="8" fill="#1f5c9e" />
+          <circle cx="142" cy="90" r="8" fill="#1f5c9e" />
+          <circle cx="60" cy="88" r="2.5" fill="#fff" opacity="0.95" />
+          <circle cx="144" cy="88" r="2.5" fill="#fff" opacity="0.95" />
+          <ellipse cx="100" cy="126" rx="14" ry="10" fill="#2f73b3" />
+          <ellipse cx="97" cy="124" rx="4" ry="2.5" fill="#8ec3ec" opacity="0.6" />
+          <path d="M100 134 Q91 140 83 136" fill="none" stroke="#2f73b3" stroke-width="2.6" stroke-linecap="round" />
+          <path d="M100 134 Q109 140 117 136" fill="none" stroke="#2f73b3" stroke-width="2.6" stroke-linecap="round" />
+        </svg>
+        <div class="cloud-badge__text" aria-label="мне скоро 1 годик">
+          <span class="cb-line">мне скоро</span>
+          <span class="cb-number">1</span>
+          <span class="cb-line cb-year">годик!</span>
+        </div>
+      </div>
+
+      <div class="hero-photo reveal">
+        <img src="assets/photos/hero.jpg" alt="Мирон" />
+      </div>
+
+      <p class="hero-name reveal">Мирон</p>
+
+      <a href="#story" class="scroll-hint reveal" aria-label="Листай вниз">
+        <span>наша история</span>
+        <span class="chevron">⌄</span>
+      </a>
+    </div>
+
+    <!-- Облака внизу героя -->
+    <div class="clouds" aria-hidden="true">
+      <div class="cloud c1"></div>
+      <div class="cloud c2"></div>
+      <div class="cloud c3"></div>
+    </div>
+  </header>
+
+  <!-- ====================== ИСТОРИЯ ====================== -->
+  <section id="story" class="section story">
+    <div class="section-head reveal">
+      <span class="kicker">★ наш первый год ★</span>
+      <h2>История нашего Мирона</h2>
+      <p class="lead">
+        20 июня 2025 года в нашей семье случилось самое большое чудо.
+        Папа <b>Антон</b> и мама <b>Таня</b> встретили своего сыночка.
+        Вот как пролетел этот волшебный первый годик.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <img src="assets/photos/story-01.jpg" alt="С большой любви" loading="lazy" />
+          <span class="tl-badge">наша история</span>
+        </div>
+        <div class="tl-text">
+          <h3>С большой любви</h3>
+          <p>Наша история началась задолго до Мироши — со встречи мамы Тани и папы Антона. Из их большой любви и родилось самое главное чудо в жизни.</p>
+        </div>
+      </article>
+
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <div class="tl-carousel" data-interval="1500">
+            <img src="assets/photos/story-02.jpg" alt="Здравствуй, мир!" class="tl-carousel__img is-active" loading="lazy" />
+            <img src="assets/photos/story-02-1.jpg" alt="Здравствуй, мир!" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-02-2.jpg" alt="Здравствуй, мир!" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-02-3.jpg" alt="Здравствуй, мир!" class="tl-carousel__img" loading="lazy" />
+          </div>
+          <span class="tl-badge">20.06.2025</span>
+        </div>
+        <div class="tl-text">
+          <h3>Здравствуй, мир!</h3>
+          <p>20 июня 2025 года на свет появился самый долгожданный малыш. Крошечный, тёплый и невероятно любимый — с этого дня мир уже никогда не был прежним.</p>
+        </div>
+      </article>
+
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <div class="tl-carousel" data-interval="1500">
+            <img src="assets/photos/story-03.jpg" alt="Совсем кроха" class="tl-carousel__img is-active" loading="lazy" />
+            <img src="assets/photos/story-03-1.jpg" alt="Совсем кроха" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-03-2.jpg" alt="Совсем кроха" class="tl-carousel__img" loading="lazy" />
+          </div>
+          <span class="tl-badge">1 месяц</span>
+        </div>
+        <div class="tl-text">
+          <h3>Совсем кроха</h3>
+          <p>Первые недели дома: сладкое сопение, крошечные пальчики и бесконечные объятия. Мама с папой не могли налюбоваться своим сокровищем.</p>
+        </div>
+      </article>
+
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <div class="tl-carousel" data-interval="1500">
+            <img src="assets/photos/story-04.jpg" alt="Каждый день — открытие" class="tl-carousel__img is-active" loading="lazy" />
+            <img src="assets/photos/story-04-1.jpg" alt="Каждый день — открытие" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-04-2.jpg" alt="Каждый день — открытие" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-04-3.jpg" alt="Каждый день — открытие" class="tl-carousel__img" loading="lazy" />
+          </div>
+          <span class="tl-badge">2 месяца</span>
+        </div>
+        <div class="tl-text">
+          <h3>Каждый день — открытие</h3>
+          <p>Мир оказался таким интересным! Первые игрушки, первые звуки и привычка пробовать всё-всё на зубок. Любопытству нашего малыша не было предела.</p>
+        </div>
+      </article>
+
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <img src="assets/photos/story-05.jpg" alt="Маленький супергерой" loading="lazy" />
+          <span class="tl-badge">5 месяцев</span>
+        </div>
+        <div class="tl-text">
+          <h3>Маленький супергерой</h3>
+          <p>Полгода почти позади, а характер уже геройский! Наш маленький супергерой рос не по дням, а по часам и дарил всем вокруг свою улыбку.</p>
+        </div>
+      </article>
+
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <div class="tl-carousel" data-interval="1500">
+            <img src="assets/photos/story-06.jpg" alt="Первые вкусы" class="tl-carousel__img is-active" loading="lazy" />
+            <img src="assets/photos/story-06-2.jpg" alt="Первые вкусы" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-06-3.jpg" alt="Первые вкусы" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-06-4.jpg" alt="Первые вкусы" class="tl-carousel__img" loading="lazy" />
+          </div>
+          <span class="tl-badge">первые вкусы</span>
+        </div>
+        <div class="tl-text">
+          <h3>Первые вкусы</h3>
+          <p>Знакомство со взрослой едой превратилось в настоящее приключение — весёлое, вкусное и, чего скрывать, очень «мазное». Зато сколько восторга!</p>
+        </div>
+      </article>
+
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <div class="tl-carousel" data-interval="1500">
+            <img src="assets/photos/story-09.jpg" alt="Новый год у бабушек" class="tl-carousel__img is-active" loading="lazy" />
+            <img src="assets/photos/story-mezen-1.jpg" alt="Новый год у бабушек" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-mezen-2.jpg" alt="Новый год у бабушек" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-mezen-3.jpg" alt="Новый год у бабушек" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-mezen-4.jpg" alt="Новый год у бабушек" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-mezen-5.jpg" alt="Новый год у бабушек" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-mezen-6.jpg" alt="Новый год у бабушек" class="tl-carousel__img" loading="lazy" />
+          </div>
+          <span class="tl-badge">Новый год</span>
+        </div>
+        <div class="tl-text">
+          <h3>У бабушек на Новый год</h3>
+          <p>Первый Новый год совпал с большим путешествием — к бабушкам и дедушкам на родину мамы и папы. Нарядный костюм, огоньки, подарки и столько тепла, смеха и радости — настоящая зимняя сказка для всей семьи!</p>
+        </div>
+      </article>
+
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <div class="tl-carousel" data-interval="1500">
+            <img src="assets/photos/story-07.jpg" alt="Сам себе хозяин" class="tl-carousel__img is-active" loading="lazy" />
+            <img src="assets/photos/story-07-1.jpg" alt="Сам себе хозяин" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-07-2.jpg" alt="Сам себе хозяин" class="tl-carousel__img" loading="lazy" />
+          </div>
+          <span class="tl-badge">около 7 месяцев</span>
+        </div>
+        <div class="tl-text">
+          <h3>Сам себе хозяин</h3>
+          <p>Сначала научился уверенно сидеть, а потом начал вставать, держась за бортик кроватки, и гордо осматривать свои владения.</p>
+        </div>
+      </article>
+
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <div class="tl-carousel" data-interval="1500">
+            <img src="assets/photos/story-08.jpg" alt="Главный помощник" class="tl-carousel__img is-active" loading="lazy" />
+            <img src="assets/photos/story-08-1.jpg" alt="Главный помощник" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-08-2.jpg" alt="Главный помощник" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-08-3.jpg" alt="Главный помощник" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-08-4.jpg" alt="Главный помощник" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-08-5.jpg" alt="Главный помощник" class="tl-carousel__img" loading="lazy" />
+          </div>
+          <span class="tl-badge">наш помощник</span>
+        </div>
+        <div class="tl-text">
+          <h3>Главный помощник</h3>
+          <p>Без нашего малыша не обходится ни одно важное дело: посчитать семейный бюджет, выбрать обои, помочь с ремонтом — всё под чутким контролем!</p>
+        </div>
+      </article>
+
+      <article class="tl-item reveal">
+        <div class="tl-photo">
+          <div class="tl-carousel" data-interval="1500">
+            <img src="assets/photos/story-10-1.jpg" alt="Лето, солнце, море" class="tl-carousel__img is-active" loading="lazy" />
+            <img src="assets/photos/story-10-2.jpg" alt="Лето, солнце, море" class="tl-carousel__img" loading="lazy" />
+            <img src="assets/photos/story-10-3.jpg" alt="Лето, солнце, море" class="tl-carousel__img" loading="lazy" />
+          </div>
+          <span class="tl-badge">11 месяцев</span>
+        </div>
+        <div class="tl-text">
+          <h3>Лето, солнце, море</h3>
+          <p>Первое путешествие к морю! Тёплый песочек под ладошками, лёгкий ветерок и мамина рука рядом — лучшее лето на свете.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-head story-outro reveal">
+      <span class="kicker">★ с любовью ★</span>
+      <h2>И вот он — наш первый годик</h2>
+      <p class="lead">
+        Столько смеха, открытий и любви уместилось в эти месяцы.
+        Каждый день с <b>Мироном</b> — маленькое чудо, и мы так рады,
+        что рядом с нами самые дорогие люди.
+      </p>
+      <p class="lead">
+        Мама и папа не хотят, чтобы вы переживали из-за выбора подарка,
+        поэтому приготовили вишлист подарков.
+      </p>
+      <a
+        class="btn btn-gift"
+        href="https://podarkus.ru/list/1537716"
+        target="_blank"
+        rel="noopener noreferrer"
+      >🎁 Выбрать подарок</a>
+    </div>
+  </section>
+
+  <!-- ====================== ОБРАТНЫЙ ОТСЧЁТ ====================== -->
+  <section id="countdown" class="section countdown-section reveal">
+    <h2>До праздника осталось</h2>
+    <div class="countdown" id="countdown" role="timer" aria-live="polite">
+      <div class="cd-box"><span class="cd-num" id="cd-days">--</span><span class="cd-label">дней</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">часов</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">минут</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">секунд</span></div>
+    </div>
+    <p class="cd-done" id="cd-done" hidden>🎉 Сегодня наш праздник! Мирону 1 годик! 🎉</p>
+  </section>
+
+  <!-- ====================== ДЕТАЛИ ====================== -->
+  <section id="details" class="section details">
+    <div class="section-head reveal">
+      <span class="kicker">★ когда и где ★</span>
+      <h2>Детали праздника</h2>
+    </div>
+
+    <div class="details-grid">
+      <div class="detail-card reveal">
+        <div class="dc-icon">📅</div>
+        <h3>Дата</h3>
+        <p>20 июня 2026</p>
+      </div>
+      <div class="detail-card reveal">
+        <div class="dc-icon">⏰</div>
+        <h3>Время</h3>
+        <p>15:00</p>
+      </div>
+      <div class="detail-card reveal">
+        <div class="dc-icon">📍</div>
+        <h3>Место</h3>
+        <p>Моя квартира<br /><span>Труда 76, кв. 44</span></p>
+      </div>
+    </div>
+
+    <div class="program reveal">
+      <h3>🧸 В программе</h3>
+      <ul>
+        <li>🎮 Игры и конкурсы</li>
+        <li>🎵 Музыка и фотосессия</li>
+        <li>🎂 Вкусный торт и закуски</li>
+        <li>🎈 Море веселья и хорошего настроения</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====================== СЕМЬЯ ====================== -->
+  <section id="family" class="section family reveal">
+    <div class="section-head">
+      <span class="kicker">★ наша семья ★</span>
+      <h2>С любовью ждём вас</h2>
+    </div>
+    <div class="family-cards">
+      <a class="fam-card fam-card-link" href="https://vk.com/lol5892" target="_blank" rel="noopener noreferrer">
+        <div class="fam-photo"><img src="assets/photos/family-dad.jpg" alt="Папа Антон с Мирошей" loading="lazy" /></div>
+        <h3>Папа Антон</h3>
+        <p>Самый сильный и добрый</p>
+      </a>
+      <div class="fam-card fam-baby">
+        <div class="fam-photo"><img src="assets/photos/family-baby.jpg" alt="Мироша" loading="lazy" /></div>
+        <h3>Мироша</h3>
+        <p>Виновник торжества</p>
+      </div>
+      <a class="fam-card fam-card-link" href="https://vk.com/t.elukova" target="_blank" rel="noopener noreferrer">
+        <div class="fam-photo"><img src="assets/photos/family-mom.jpg" alt="Мама Таня с Мирошей" loading="lazy" /></div>
+        <h3>Мама Таня</h3>
+        <p>Самая нежная и любимая</p>
+      </a>
+    </div>
+
+    <figure class="family-all reveal">
+      <img src="assets/photos/family-all.jpg" alt="Наша семья" loading="lazy" />
+      <figcaption>Наша маленькая, но самая дружная семья 💙</figcaption>
+    </figure>
+  </section>
+
+  <!-- ====================== ГАЛЕРЕЯ ====================== -->
+  <section id="gallery" class="section gallery">
+    <div class="section-head reveal">
+      <span class="kicker">★ мгновения счастья ★</span>
+      <h2>Наши любимые моменты</h2>
+      <p class="lead">Самые тёплые кадры этого волшебного года.</p>
+    </div>
+    <div class="gallery-marquee reveal" aria-label="Наши любимые моменты">
+      <div class="gallery-marquee__track" id="gallery-track"></div>
+    </div>
+  </section>
+
+  <!-- ====================== ПОДТВЕРДИТЬ ПРИСУТСТВИЕ ====================== -->
+  <section id="rsvp" class="section rsvp">
+    <div class="rsvp-card reveal">
+      <h2>Подтверди, пожалуйста 💌</h2>
+      <p>Дай знать, придёшь ли ты разделить с нами этот особенный день.</p>
+      <form id="rsvp-form" class="rsvp-form" novalidate>
+        <label>
+          Твоё имя
+          <input type="text" name="name" id="rsvp-name" placeholder="Например, бабушка Лена" required />
+        </label>
+        <label>
+          Сколько вас будет?
+          <input type="number" name="guests" id="rsvp-guests" min="1" max="20" value="1" />
+        </label>
+        <div class="rsvp-buttons">
+          <button type="submit" class="btn btn-yes" data-answer="yes">Буду! 🎉</button>
+          <button type="submit" class="btn btn-no" data-answer="no">Не смогу 😔</button>
+        </div>
+        <p class="rsvp-result" id="rsvp-result" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ====================== ФУТЕР-ЛЕНТА ====================== -->
+  <footer class="footer">
+    <div class="ribbon">★ Жду с нетерпением! ★</div>
+    <p class="footer-sub">Мирон · 20 июня 2026 · с любовью, Антон и Таня</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" type="button" aria-label="Закрыть">&times;</button>
+    <img src="" alt="" id="lightbox-img" />
+  </div>
+
+  <script id="gallery-data" type="application/json">["-aXsxuOB1qo7gkjN_be2r18ZMQuz_l-_9LnO48aUkCImwqura77tbVw0Vu_6gTXKkfxrKvMV6ptDeTaUOOp19Pj_.jpg", "1luWoDU8tpAbD5v1U_32bXdQoPl3zs648Wi_-Fh26lMK1FMSetT4apsO8bBrNlRhrnXUkvcjhgYFgC7bCuJemV-a.jpg", "52wABWUzmy-Ketsf6PsB7UB8K0h85z1FJdJTzoaflREXiOP_kEyi7SQ2onk1WcGABnvxfVz-KloJ6JOeeCh1sAq_.jpg", "79GkJCa8T7iIG-CSPkOFwRe66vZ7INNG8Eo-XXIfZi3YvY0V1zVI6wGZffuC0j8J94nCtfhZYyowNDi38h077ypf.jpg", "Cj2lER-6O1B_wzdAISEYfpAFgg_ujDauvoOwLzkV1UGaOXtGrSkuchPUOmclbXTAgi4vWndPNqtxE_9IFqUS_jEl.jpg", "D-jCUkooyOzafdFcZEuLKU89EHjIR9y1PQd8Jrm6ASnxLw2s8AYQMNZOpP1f_4wRz_NVmigimvhFjFMoMazWQPcz.jpg", "DiZmHWO57URM_kLTL_2a5gQq9iOZib78pVXVTRfuWAMDcYml47Cdd40lez6BSAvQ7Y3kdQW9jnIGk2_On6nvYytJ.jpg", "Hag0GwMrFMEBbqDvu9d40JYvBZ1JpX8epsHluouNNPbGZozYlokQ-V8GVDy4bpY9OnFTS_bffe5AoTy9akEMu_u- (1).jpg", "NtlBkao5qc7ungxur6_0KfjI9_AiKa7bJAvTWESUcC79HKAmVIYtbpRQux7IoalPA9p6fGOBIB3CjpnmsWRFSfvU.jpg", "UHnO2iMf4ow5wK6NMTl6yN1_oW-SxnDHTgDde3RsQZb3GNGUArSJFFfLT6hEUwlrg-oRPm57jJGW459tanyMu0X0.jpg", "gLwxG-WYqMGU9BqvCOdT2-CHgNAuwNL3YKKJJRsoPtq0ihaEizixG6nlfCbiF5H8vwO5KmBFxu5CHx3kCl-7P6aA.jpg", "gallery-1.jpg", "gallery-10.jpg", "gallery-11.jpg", "gallery-12.jpg", "gallery-2.jpg", "gallery-3.jpg", "gallery-4.jpg", "gallery-5.jpg", "gallery-6.jpg", "gallery-7.jpg", "gallery-8.jpg", "gallery-9.jpg", "jvmrLjo4OVgMsLCyXGBMly2-mjsoVHIbqKiiseR2SKijo7jsxuq9rllf4KbsdmA6HltlDTXEE7h14N2USlX_C5Kc.jpg", "k0C0VFIJ7dwnX4gLCeWK2h_0UXITc8BMDzWV6ii40gNypRxO8jns41vZUbKX-at2xZzW6-la_sXU1PFDuBAUOZiX.jpg", "kayoZYnK3zyE0o3pP8nwDwncXVND1g64uZQ5vGQyKp57D4qsZzDIdXnaE6clf2EwKrfLNLPX3fr6LBD4TjV9pDBD.jpg", "lr63jVfQDht33N4EO_tyyJ6Af19HZBfgQvQk2u3zMI7OuiswDN6hIWahNyZQOGfB7ESZllRT1EfEuD331L0HZLn-.jpg", "mLpL1g5skhAPaIkF0iSG4iZ9d-ECZU2HmC7Z9rX4Dy7g9cSaKH8dBwvCZ4skZ21w2c8qeMircahfiIJ7LCcKHlHt.jpg", "oVs87QCRdvCg3ZnJfZT0jg2YMKrKjZdBmNVf5Exm4LnSlGxv2pR0tiQqz8TLirHXkkkkdekeBx3dAhWgtcjq5-DU.jpg", "story-10-основное.jpg", "story-11-основное.jpg", "ueS-9XlcIOJsE9NtGnTL8vefOe4nii3mWIWnOt2_MLx_rOQl61B5MIdnJhJ36XvOMljEPH6OdR_ZcA33Ncz-Z2o_.jpg", "бабушка лариса подарила уточек.jpg", "бабушка люда и дедушка сережа со мной.jpg", "в тот же день когда папа взял меня на плечи и катал на улице это было в первый раз. УРА я счастлив!.jpg", "впервые стою в кроватке сам.jpg", "гимнастика.jpg", "гуляли с папой и мамой папа взял меня на плечи УРА!.jpg", "гуляю с мамочкой.jpg", "жду когда мама придет.jpg", "играю с первыми игрушками мне 2 месяца.jpg", "изучаю книжки обожаю книжки.jpg", "изучаю кники! обожаю книжки!.jpg", "катаю ходунк по всему детскому парку.jpg", "костюм к новому году.jpg", "купили мне пьедестал теперь там буду играть.jpg", "мама возила меня в архангельск в ресторан.jpg", "мама купила крутую машину!.jpg", "мне дали попробовать я блоко .jpg", "мне купили костюм с мишками.jpg", "мне нравиться игозить в кроватке.jpg", "мне три месяца!.jpg", "мой первый тортик каждый месяц мама покупает тортик.jpg", "моменты.jpg", "моя прервая фотосесия.jpg", "новогоднеяя фотосесия.jpg", "оделся на прогулку зима холодно.jpg", "оседлал лошадку.jpg", "папа посадил на машинку.jpg", "первый месяц дома.jpg", "первый прикорм.jpg", "первый раз на улице без коляски.jpg", "приветики я милашка.jpg", "призадумался.jpg", "примерял костюмчик.jpg", "примеряю стульчик первй раз.jpg", "пробую на вскус кровать.jpg", "разбираюсь в книгах.jpg", "с бабушкой ларисой .jpg", "с мамой дома весело!.jpg", "с мамой много времени проводим вместе .jpg", "с папой и моей прапрабабушкой на ее дне рождении.jpg", "семья.jpg", "сплю в кровате первый и последний раз.jpg", "суровые прогулски с папой.jpg", "считаю семейный бюджет.jpg", "так я кушаю с мамой.jpg", "так я кушаю.jpg", "только из душа папа балуеться с полтенцем.jpg", "у бабшуки люды и дедушки сережи в деревне смотрю в окно.jpg", "учусь вставь мне 7 месяцев.jpg", "учусь ходить в парке для детей.jpg", "ходили в гости к тете ане маминой подруге.jpg", "ходили с папой и мамой в ресторан.jpg", "ходили с папой на прогулку все замерзли зимой.jpg", "ходили с папой на прогулку пока шел снег.jpg", "это тоже первый прикорм .jpg", "я люблю кушать!!!.jpg", "я так рад новой машине!.jpg", "я так счастлив!!!!.jpg", "я такой милашка.jpg"]</script>
+  <script src="script.js"></script>
+</body>
+</html>
