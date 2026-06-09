@@ -29,6 +29,20 @@ git push -u origin main
    - **Build output directory:** `/`
 4. **Save and Deploy**
 
+### Если деплой падает (Build failed)
+
+В настройках проекта → **Settings** → **Build** проверьте:
+
+| Поле | Должно быть |
+|---|---|
+| Build command | *(пусто)* |
+| Deploy command | `npx wrangler deploy` *(можно оставить — в репозитории есть `wrangler.toml`)* |
+| Root directory | `/` |
+
+Если снова ошибка — нажмите **Retry deployment** после `git push` (файл `wrangler.toml` уже в репозитории).
+
+> Проект должен быть типа **Pages**, не отдельный Worker без статики.
+
 ## 2. Telegram-уведомления (RSVP)
 
 В проекте Pages → **Settings** → **Environment variables** добавьте:
