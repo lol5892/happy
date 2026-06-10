@@ -17,21 +17,42 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comfortaa:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    html.boot-lock,
+    html.boot-lock body {
+      overflow: hidden;
+      height: 100%;
+    }
+    html.boot-lock body {
+      position: fixed;
+      width: 100%;
+      inset: 0;
+    }
+  </style>
   <script>
     (function () {
-      if (location.hash) return;
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      document.documentElement.classList.add("boot-lock");
+
       function goTop() {
+        if (location.hash) {
+          history.replaceState(null, "", location.pathname + location.search);
+        }
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
       }
-      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
       goTop();
       document.addEventListener("DOMContentLoaded", goTop);
-      window.addEventListener("load", goTop);
+      window.addEventListener("load", function () {
+        goTop();
+        document.documentElement.classList.remove("boot-lock");
+      });
       window.addEventListener("pageshow", goTop);
-      setTimeout(goTop, 50);
-      setTimeout(goTop, 300);
+      [0, 50, 150, 300, 600, 1000].forEach(function (ms) {
+        setTimeout(goTop, ms);
+      });
     })();
   </script>
 </head>

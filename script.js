@@ -2,21 +2,22 @@
 //  Мирону 1 годик — интерактив
 // ============================================================
 
-// Всегда открывать сайт с hero, а не с прошлой позиции прокрутки
+// Дублируем фиксацию старта (на случай кэша без inline-скрипта в head)
 (function initScroll() {
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
-  function scrollToTopUnlessHash() {
-    if (location.hash) return;
+  function goTop() {
+    if (location.hash) {
+      history.replaceState(null, "", location.pathname + location.search);
+    }
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }
 
-  scrollToTopUnlessHash();
-  window.addEventListener("pageshow", scrollToTopUnlessHash);
-  window.addEventListener("load", scrollToTopUnlessHash);
-  requestAnimationFrame(scrollToTopUnlessHash);
+  goTop();
+  window.addEventListener("pageshow", goTop);
+  window.addEventListener("load", goTop);
 })();
 
 function photoPath(name) {
@@ -233,13 +234,13 @@ function thumbPath(name) {
 
   if ("IntersectionObserver" in window) {
     const sectionIo = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        mountGallery();
-        startScanLoop();
-      } else {
+      if (!entries[0].isIntersecting) {
         stopScanLoop();
+        return;
       }
-    }, { rootMargin: "120px" });
+      mountGallery();
+      startScanLoop();
+    }, { rootMargin: "0px", threshold: 0.05 });
     sectionIo.observe(section);
   } else {
     mountGallery();
