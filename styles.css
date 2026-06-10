@@ -113,9 +113,10 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 .section {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 56px 22px;
+  padding: clamp(44px, 7vw, 64px) 22px;
   position: relative;
   z-index: 2;
+  background: transparent;
 }
 
 .section-head { text-align: center; margin-bottom: 36px; }
@@ -429,46 +430,16 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   50%     { transform: translateY(8px); }
 }
 
-/* ===================== ПЕРЕХОДЫ МЕЖДУ БЛОКАМИ ===================== */
-.wave-divider {
-  display: block;
-  width: 100%;
-  height: clamp(36px, 5vw, 56px);
-  line-height: 0;
-  flex-shrink: 0;
-}
-.wave-divider path { fill: currentColor; }
-
-.cloud-bridge {
-  position: relative;
-  z-index: 2;
-  padding: 0 0 0;
-  background: linear-gradient(
-    180deg,
-    var(--cream) 0%,
-    rgba(216, 236, 251, 0.55) 42%,
-    rgba(216, 236, 251, 0.35) 100%
-  );
-}
-.cloud-strip {
-  display: block;
-  width: 100%;
-  height: clamp(64px, 10vw, 96px);
-  filter: drop-shadow(0 8px 18px rgba(142, 195, 236, 0.15));
-}
-.wave-divider--to-story { color: var(--cream); }
-
 /* ===================== ОБРАТНЫЙ ОТСЧЁТ ===================== */
 .countdown-section {
-  position: relative;
-  z-index: 2;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: clamp(12px, 3vw, 24px) 22px 0;
+  padding-top: clamp(20px, 4vw, 36px);
+  padding-bottom: clamp(36px, 6vw, 52px);
 }
 .countdown-card {
   text-align: center;
-  background: rgba(255, 255, 255, 0.96);
+  max-width: 760px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(10px);
   border: 2px solid rgba(142, 195, 236, 0.4);
   border-radius: var(--radius);
@@ -524,18 +495,6 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   font-weight: 600;
   font-size: 1.15rem;
   color: var(--gold);
-}
-.cloud-bridge .wave-divider {
-  margin-top: clamp(20px, 4vw, 32px);
-  margin-bottom: -1px;
-}
-
-.section.story,
-.section.details,
-.section.family,
-.section.rsvp {
-  padding-top: 52px;
-  padding-bottom: 56px;
 }
 
 /* ===================== ИСТОРИЯ — таймлайн ===================== */
@@ -656,48 +615,11 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   box-shadow: 0 14px 28px rgba(233, 169, 58, 0.34);
 }
 
-/* ===================== СЕКЦИИ ===================== */
-.section.story {
-  background:
-    radial-gradient(circle at 0% 8%, rgba(255, 227, 154, 0.16), transparent 34%),
-    radial-gradient(circle at 100% 92%, rgba(188, 220, 245, 0.18), transparent 36%),
-    var(--cream);
-}
-
-.section.rsvp {
-  padding-bottom: 64px;
-}
-
+/* ===================== СЕКЦИИ — единый фон через body + шарики ===================== */
 .section.gallery {
-  padding: 52px 0 56px;
-}
-
-.wave-divider--to-details { color: var(--sky-soft); }
-
-.details {
-  background: var(--sky-soft);
-}
-
-.wave-divider--to-family { color: var(--cream); }
-
-.family {
-  overflow: visible;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255, 227, 154, 0.12), transparent 42%),
-    var(--cream);
-}
-
-.wave-divider--to-gallery { color: var(--sky-panel); }
-
-.gallery {
   max-width: none;
-  background: linear-gradient(180deg, var(--sky-panel) 0%, rgba(216, 236, 251, 0.55) 100%);
-}
-
-.wave-divider--to-rsvp { color: var(--cream); }
-
-.rsvp {
-  background: var(--cream);
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .details-grid {
@@ -741,6 +663,9 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 }
 
 /* ===================== СЕМЬЯ — карточки ===================== */
+.family {
+  overflow: visible;
+}
 .family-cards {
   display: flex;
   justify-content: center;
@@ -1007,7 +932,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   padding: 48px 20px 64px;
   position: relative;
   z-index: 2;
-  background: var(--cream);
+  background: transparent;
 }
 .ribbon {
   display: inline-block;
@@ -1084,7 +1009,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 
   .hero { padding: 40px 18px 24px; }
 
-  .countdown-section { padding: 8px 16px 0; }
+  .countdown-section { padding: 16px 16px 32px; }
 
   /* Таймлайн в одну колонку */
   .timeline { gap: 38px; }
@@ -1129,7 +1054,8 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   .section.details,
   .section.family,
   .section.gallery,
-  .section.rsvp {
+  .section.rsvp,
+  .section.countdown-section {
     padding-top: 36px;
     padding-bottom: 40px;
   }
@@ -1137,7 +1063,6 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   .kicker { font-size: 0.72rem; letter-spacing: 1px; padding: 7px 14px; }
 
   .hero { padding: 36px 14px 20px; }
-  .cloud-strip { height: 56px; }
   .hero-pre { margin-bottom: 6px; font-size: 0.95rem; }
   .hero-title { margin-bottom: 16px; }
   .hero-title span { font-size: clamp(2.1rem, 12vw, 2.8rem); }

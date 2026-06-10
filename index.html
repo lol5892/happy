@@ -128,35 +128,20 @@
     </div>
   </header>
 
-  <div class="cloud-bridge">
-    <svg class="cloud-strip" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-      <ellipse cx="180" cy="88" rx="150" ry="52" fill="#fff" opacity="0.92" />
-      <ellipse cx="300" cy="72" rx="110" ry="44" fill="#fff" />
-      <ellipse cx="720" cy="78" rx="220" ry="58" fill="#fff" opacity="0.96" />
-      <ellipse cx="880" cy="66" rx="130" ry="48" fill="#fff" />
-      <ellipse cx="1180" cy="84" rx="170" ry="54" fill="#fff" opacity="0.94" />
-      <ellipse cx="1320" cy="70" rx="100" ry="40" fill="#fff" />
-    </svg>
-
-    <!-- ====================== ОБРАТНЫЙ ОТСЧЁТ ====================== -->
-    <section id="countdown" class="countdown-section reveal" aria-labelledby="countdown-title">
-      <div class="countdown-card">
-        <p class="countdown-kicker">20 июня 2026 · 15:00</p>
-        <h2 id="countdown-title">До праздника осталось</h2>
-        <div class="countdown" id="countdown-timer" role="timer" aria-live="polite">
-          <div class="cd-box"><span class="cd-num" id="cd-days">--</span><span class="cd-label">дней</span></div>
-          <div class="cd-box"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">часов</span></div>
-          <div class="cd-box"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">минут</span></div>
-          <div class="cd-box"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">секунд</span></div>
-        </div>
-        <p class="cd-done" id="cd-done" hidden>🎉 Сегодня наш праздник! Мирону 1 годик! 🎉</p>
+  <!-- ====================== ОБРАТНЫЙ ОТСЧЁТ ====================== -->
+  <section id="countdown" class="section countdown-section reveal" aria-labelledby="countdown-title">
+    <div class="countdown-card">
+      <p class="countdown-kicker">20 июня 2026 · 15:00</p>
+      <h2 id="countdown-title">До праздника осталось</h2>
+      <div class="countdown" id="countdown-timer" role="timer" aria-live="polite">
+        <div class="cd-box"><span class="cd-num" id="cd-days">--</span><span class="cd-label">дней</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">часов</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">минут</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">секунд</span></div>
       </div>
-    </section>
-
-    <svg class="wave-divider wave-divider--to-story" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,32 C320,56 520,8 720,32 C920,56 1120,8 1440,32 L1440,56 L0,56 Z" />
-    </svg>
-  </div>
+      <p class="cd-done" id="cd-done" hidden>🎉 Сегодня наш праздник! Мирону 1 годик! 🎉</p>
+    </div>
+  </section>
 
   <!-- ====================== ИСТОРИЯ ====================== -->
   <section id="story" class="section story">
@@ -345,10 +330,6 @@
     </div>
   </section>
 
-  <svg class="wave-divider wave-divider--to-details" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0,24 C360,48 540,0 720,24 C900,48 1080,0 1440,24 L1440,56 L0,56 Z" />
-  </svg>
-
   <!-- ====================== ДЕТАЛИ ====================== -->
   <section id="details" class="section details">
     <div class="section-head reveal">
@@ -385,10 +366,6 @@
     </div>
   </section>
 
-  <svg class="wave-divider wave-divider--to-family" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0,32 C320,8 520,48 720,32 C920,8 1120,48 1440,32 L1440,56 L0,56 Z" />
-  </svg>
-
   <!-- ====================== СЕМЬЯ ====================== -->
   <section id="family" class="section family reveal">
     <div class="section-head">
@@ -419,10 +396,6 @@
     </figure>
   </section>
 
-  <svg class="wave-divider wave-divider--to-gallery" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0,24 C360,48 540,0 720,24 C900,48 1080,0 1440,24 L1440,56 L0,56 Z" />
-  </svg>
-
   <!-- ====================== ГАЛЕРЕЯ ====================== -->
   <section id="gallery" class="section gallery">
     <div class="section-head reveal">
@@ -434,10 +407,6 @@
       <div class="gallery-marquee__track" id="gallery-track"></div>
     </div>
   </section>
-
-  <svg class="wave-divider wave-divider--to-rsvp" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0,32 C320,56 520,8 720,32 C920,56 1120,8 1440,32 L1440,56 L0,56 Z" />
-  </svg>
 
   <!-- ====================== ПОДТВЕРДИТЬ ПРИСУТСТВИЕ ====================== -->
   <section id="rsvp" class="section rsvp">
