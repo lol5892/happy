@@ -5,7 +5,6 @@ from pathlib import Path
 
 root = Path(__file__).resolve().parent
 photos_dir = root / "photos"
-manifest = root / "assets" / "gallery-manifest.json"
 index = root / "index.html"
 
 IMAGE_EXT = (".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp")
@@ -16,11 +15,8 @@ files = sorted(
     if os.path.isfile(photos_dir / f)
     and f.lower().endswith(IMAGE_EXT)
     and f not in (".jpg",)
-)
-
-manifest.write_text(
-    json.dumps(files, ensure_ascii=False, indent=2),
-    encoding="utf-8",
+    and not f.startswith("template-")
+    and not f.startswith("_")
 )
 
 gallery_json = json.dumps(files, ensure_ascii=False)
