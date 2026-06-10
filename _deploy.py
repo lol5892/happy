@@ -31,6 +31,13 @@ def copy_file(src: Path, dst: Path) -> None:
     shutil.copy2(src, dst)
 
 
+def patch_script_for_php_hosting() -> None:
+    path = DIST / "script.js"
+    text = path.read_text(encoding="utf-8")
+    text = text.replace('fetch("/api/rsvp"', 'fetch("rsvp.php"')
+    path.write_text(text, encoding="utf-8")
+
+
 def write_hosting_files() -> None:
     (DIST / "robots.txt").write_text(
         "User-agent: *\nAllow: /\n",
@@ -87,6 +94,7 @@ def build() -> None:
         copied += 1
 
     write_hosting_files()
+    patch_script_for_php_hosting()
 
     if ARCHIVE.exists():
         ARCHIVE.unlink()
