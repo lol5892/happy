@@ -39,12 +39,12 @@ else:
         data_script + '  <script src="script.js"></script>',
     )
 
-marquee = """    <div class="gallery-marquee reveal" aria-label="Наши любимые моменты">
+marquee = """    <div class="gallery-marquee" aria-label="Наши любимые моменты">
       <div class="gallery-marquee__track" id="gallery-track"></div>
     </div>"""
 
 pattern = (
-    r'    <div class="gallery-marquee reveal".*?</div>\n  </section>\n\n'
+    r'    <div class="gallery-marquee(?: reveal)?".*?</div>\n  </section>\n\n'
     r'  <!-- ====================== ПОДТВЕРДИТЬ'
 )
 replacement = marquee + "\n  </section>\n\n  <!-- ====================== ПОДТВЕРДИТЬ"
