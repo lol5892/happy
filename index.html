@@ -22,15 +22,17 @@
 
   <nav class="site-nav" aria-label="Навигация по сайту">
     <a class="nav-brand" href="#">Мироша · 1 годик</a>
-    <div class="nav-links">
+    <div class="nav-links" role="navigation">
       <a href="#countdown">Отсчёт</a>
       <a href="#story">История</a>
       <a href="#details">Детали</a>
       <a href="#family">Семья</a>
       <a href="#gallery">Галерея</a>
-      <a href="#rsvp">Подтвердить присутствие</a>
+      <a href="#rsvp" class="nav-cta">RSVP</a>
     </div>
   </nav>
+
+  <main class="page">
 
   <!-- Плавающие шарики на фоне всей страницы -->
   <div class="floating-balloons" aria-hidden="true">
@@ -127,11 +129,14 @@
   </header>
 
   <div class="cloud-bridge">
-    <div class="clouds" aria-hidden="true">
-      <div class="cloud c1"></div>
-      <div class="cloud c2"></div>
-      <div class="cloud c3"></div>
-    </div>
+    <svg class="cloud-strip" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <ellipse cx="180" cy="88" rx="150" ry="52" fill="#fff" opacity="0.92" />
+      <ellipse cx="300" cy="72" rx="110" ry="44" fill="#fff" />
+      <ellipse cx="720" cy="78" rx="220" ry="58" fill="#fff" opacity="0.96" />
+      <ellipse cx="880" cy="66" rx="130" ry="48" fill="#fff" />
+      <ellipse cx="1180" cy="84" rx="170" ry="54" fill="#fff" opacity="0.94" />
+      <ellipse cx="1320" cy="70" rx="100" ry="40" fill="#fff" />
+    </svg>
 
     <!-- ====================== ОБРАТНЫЙ ОТСЧЁТ ====================== -->
     <section id="countdown" class="countdown-section reveal" aria-labelledby="countdown-title">
@@ -456,6 +461,8 @@
       </form>
     </div>
   </section>
+
+  </main>
 
   <!-- ====================== ФУТЕР-ЛЕНТА ====================== -->
   <footer class="footer">

@@ -8,6 +8,7 @@
   --cream-2: #fbf3e0;
   --sky: #bcdcf5;
   --sky-soft: #d8ecfb;
+  --sky-panel: #eef7fd;
   --blue: #2f73b3;
   --blue-deep: #1f5c9e;
   --blue-line: #8ec3ec;
@@ -19,11 +20,17 @@
   --shadow: 0 14px 34px rgba(47, 115, 179, 0.16);
   --shadow-sm: 0 8px 20px rgba(47, 115, 179, 0.12);
   --radius: 26px;
+  --nav-h: 58px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--nav-h) + 12px); }
+
+.page {
+  position: relative;
+  z-index: 1;
+}
 
 /* ===================== НАВИГАЦИЯ ===================== */
 .site-nav {
@@ -33,12 +40,13 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-t
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 12px 22px;
-  background: rgba(253, 248, 236, 0.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 2px solid rgba(142, 195, 236, 0.35);
-  box-shadow: 0 4px 18px rgba(47, 115, 179, 0.08);
+  gap: 12px;
+  min-height: var(--nav-h);
+  padding: 8px 18px;
+  background: rgba(253, 248, 236, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(142, 195, 236, 0.45);
+  box-shadow: 0 4px 18px rgba(47, 115, 179, 0.06);
 }
 .nav-brand {
   font-family: "Fredoka", sans-serif;
@@ -50,23 +58,39 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-t
 }
 .nav-links {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
-  gap: 8px 14px;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  max-width: min(100%, 680px);
 }
+.nav-links::-webkit-scrollbar { display: none; }
 .nav-links a {
   font-family: "Fredoka", sans-serif;
   font-weight: 500;
-  font-size: .88rem;
+  font-size: .84rem;
   color: var(--blue);
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 7px 12px;
   border-radius: 999px;
-  transition: background .2s, color .2s;
+  white-space: nowrap;
+  transition: background .2s, color .2s, transform .2s;
+  flex-shrink: 0;
 }
 .nav-links a:hover {
   background: var(--sky-soft);
   color: var(--blue-deep);
+}
+.nav-links .nav-cta {
+  background: var(--yellow-soft);
+  color: #6b4a00;
+  font-weight: 600;
+}
+.nav-links .nav-cta:hover {
+  background: var(--yellow);
+  transform: translateY(-1px);
 }
 
 body {
@@ -168,13 +192,11 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 /* ===================== HERO ===================== */
 .hero {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 88px 20px 56px;
+  padding: clamp(48px, 8vw, 72px) 20px clamp(28px, 5vw, 40px);
   overflow: visible;
 }
 .hero-inner {
@@ -393,11 +415,12 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  margin-top: 34px;
+  margin-top: 28px;
   text-decoration: none;
   color: var(--blue);
   font-family: "Fredoka", sans-serif;
   font-weight: 500;
+  font-size: 0.92rem;
   text-shadow: 0 1px 0 var(--white);
 }
 .scroll-hint .chevron { font-size: 1.8rem; animation: bounce 1.6s infinite; }
@@ -419,93 +442,19 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 .cloud-bridge {
   position: relative;
   z-index: 2;
-  padding: 72px 0 0;
+  padding: 0 0 0;
   background: linear-gradient(
     180deg,
-    rgba(253, 248, 236, 0) 0%,
-    rgba(216, 236, 251, 0.42) 55%,
-    rgba(216, 236, 251, 0.28) 100%
+    var(--cream) 0%,
+    rgba(216, 236, 251, 0.55) 42%,
+    rgba(216, 236, 251, 0.35) 100%
   );
 }
-.clouds {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 110px;
-  pointer-events: none;
-  z-index: 1;
-  overflow: visible;
-}
-.cloud {
-  position: absolute;
-  top: 0;
-  background: var(--white);
-  border-radius: 50%;
-  box-shadow: 0 10px 28px rgba(142, 195, 236, 0.22);
-}
-.cloud::before,
-.cloud::after {
-  content: "";
-  position: absolute;
-  background: inherit;
-  border-radius: 50%;
-  box-shadow: inherit;
-}
-.cloud.c1 {
-  width: 110px;
-  height: 110px;
-  left: max(4%, 12px);
-  top: 28px;
-}
-.cloud.c1::before {
-  width: 72px;
-  height: 72px;
-  top: -18px;
-  left: 58px;
-}
-.cloud.c1::after {
-  width: 88px;
-  height: 88px;
-  top: 8px;
-  left: 92px;
-}
-.cloud.c2 {
-  width: 130px;
-  height: 130px;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8px;
-}
-.cloud.c2::before {
-  width: 96px;
-  height: 96px;
-  top: -12px;
-  left: 88px;
-}
-.cloud.c2::after {
-  width: 78px;
-  height: 78px;
-  top: 18px;
-  left: -34px;
-}
-.cloud.c3 {
-  width: 100px;
-  height: 100px;
-  right: max(4%, 12px);
-  top: 32px;
-}
-.cloud.c3::before {
-  width: 70px;
-  height: 70px;
-  top: -14px;
-  left: -36px;
-}
-.cloud.c3::after {
-  width: 82px;
-  height: 82px;
-  top: 10px;
-  left: 62px;
+.cloud-strip {
+  display: block;
+  width: 100%;
+  height: clamp(64px, 10vw, 96px);
+  filter: drop-shadow(0 8px 18px rgba(142, 195, 236, 0.15));
 }
 .wave-divider--to-story { color: var(--cream); }
 
@@ -515,7 +464,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   z-index: 2;
   max-width: 760px;
   margin: 0 auto;
-  padding: 0 22px;
+  padding: clamp(12px, 3vw, 24px) 22px 0;
 }
 .countdown-card {
   text-align: center;
@@ -577,8 +526,16 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   color: var(--gold);
 }
 .cloud-bridge .wave-divider {
-  margin-top: 28px;
+  margin-top: clamp(20px, 4vw, 32px);
   margin-bottom: -1px;
+}
+
+.section.story,
+.section.details,
+.section.family,
+.section.rsvp {
+  padding-top: 52px;
+  padding-bottom: 56px;
 }
 
 /* ===================== ИСТОРИЯ — таймлайн ===================== */
@@ -699,23 +656,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   box-shadow: 0 14px 28px rgba(233, 169, 58, 0.34);
 }
 
-/* ===================== ИСТОРИЯ ===================== */
-.section.story,
-.section.details,
-.section.family,
-.section.rsvp {
-  padding-top: 48px;
-  padding-bottom: 64px;
-}
-
-.section.rsvp {
-  padding-bottom: 72px;
-}
-
-.section.gallery {
-  padding: 48px 0 64px;
-}
-
+/* ===================== СЕКЦИИ ===================== */
 .section.story {
   background:
     radial-gradient(circle at 0% 8%, rgba(255, 227, 154, 0.16), transparent 34%),
@@ -723,16 +664,22 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
     var(--cream);
 }
 
+.section.rsvp {
+  padding-bottom: 64px;
+}
+
+.section.gallery {
+  padding: 52px 0 56px;
+}
+
 .wave-divider--to-details { color: var(--sky-soft); }
 
-/* ===================== ДЕТАЛИ ===================== */
 .details {
   background: var(--sky-soft);
 }
 
 .wave-divider--to-family { color: var(--cream); }
 
-/* ===================== СЕМЬЯ ===================== */
 .family {
   overflow: visible;
   background:
@@ -740,18 +687,15 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
     var(--cream);
 }
 
-.wave-divider--to-gallery { color: #f3f9fd; }
+.wave-divider--to-gallery { color: var(--sky-panel); }
 
-/* ===================== ГАЛЕРЕЯ ===================== */
 .gallery {
   max-width: none;
-  background:
-    linear-gradient(180deg, #f3f9fd 0%, rgba(216, 236, 251, 0.55) 100%);
+  background: linear-gradient(180deg, var(--sky-panel) 0%, rgba(216, 236, 251, 0.55) 100%);
 }
 
 .wave-divider--to-rsvp { color: var(--cream); }
 
-/* ===================== RSVP ===================== */
 .rsvp {
   background: var(--cream);
 }
@@ -790,7 +734,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   font-size: 1.05rem;
   font-weight: 500;
   color: var(--blue);
-  background: var(--white);
+  background: var(--sky-soft);
   padding: 8px 18px;
   border-radius: 999px;
   box-shadow: var(--shadow-sm);
@@ -1058,7 +1002,13 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 }
 
 /* ===================== ФУТЕР ===================== */
-.footer { text-align: center; padding: 60px 20px 80px; position: relative; z-index: 2; }
+.footer {
+  text-align: center;
+  padding: 48px 20px 64px;
+  position: relative;
+  z-index: 2;
+  background: var(--cream);
+}
 .ribbon {
   display: inline-block;
   background: var(--sky);
@@ -1122,21 +1072,19 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   .section-head { margin-bottom: 36px; }
 
   .site-nav {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 10px 14px;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
   }
-  .nav-links { justify-content: center; }
-  .nav-links a { font-size: .82rem; padding: 5px 10px; }
+  .nav-brand { font-size: 0.92rem; }
+  .nav-links {
+    justify-content: flex-start;
+    max-width: 100%;
+  }
 
-  .hero { padding: 78px 18px 48px; }
+  .hero { padding: 40px 18px 24px; }
 
-  .cloud-bridge { padding-top: 56px; }
-  .clouds { height: 88px; }
-  .cloud.c1 { width: 88px; height: 88px; top: 22px; }
-  .cloud.c2 { width: 104px; height: 104px; top: 6px; }
-  .cloud.c3 { width: 80px; height: 80px; top: 24px; }
-  .countdown-section { padding: 0 16px; }
+  .countdown-section { padding: 8px 16px 0; }
 
   /* Таймлайн в одну колонку */
   .timeline { gap: 38px; }
@@ -1177,19 +1125,19 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 /* Телефоны */
 @media (max-width: 480px) {
   .section { padding: 40px 14px; }
-  .story,
-  .details,
-  .family,
-  .gallery,
-  .rsvp {
+  .section.story,
+  .section.details,
+  .section.family,
+  .section.gallery,
+  .section.rsvp {
     padding-top: 36px;
-    padding-bottom: 48px;
+    padding-bottom: 40px;
   }
-  .gallery { padding-left: 0; padding-right: 0; }
+  .section.gallery { padding-left: 0; padding-right: 0; }
   .kicker { font-size: 0.72rem; letter-spacing: 1px; padding: 7px 14px; }
 
-  .hero { padding: 74px 14px 40px; }
-  .cloud-bridge { padding-top: 48px; }
+  .hero { padding: 36px 14px 20px; }
+  .cloud-strip { height: 56px; }
   .hero-pre { margin-bottom: 6px; font-size: 0.95rem; }
   .hero-title { margin-bottom: 16px; }
   .hero-title span { font-size: clamp(2.1rem, 12vw, 2.8rem); }
@@ -1244,7 +1192,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 
 /* Низкие экраны (альбомная ориентация телефона) */
 @media (max-height: 560px) and (orientation: landscape) {
-  .hero { min-height: auto; padding-top: 90px; padding-bottom: 90px; }
+  .hero { padding-top: 36px; padding-bottom: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
