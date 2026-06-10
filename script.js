@@ -201,8 +201,6 @@ function thumbPath(name) {
     track.appendChild(buildGroup(files, false));
     watchImages(track);
 
-    if (isMobile) return;
-
     const addClone = () => {
       const clone = buildGroup(files, true);
       track.appendChild(clone);

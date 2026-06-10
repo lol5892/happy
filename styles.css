@@ -788,6 +788,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   display: flex;
   width: max-content;
   animation: gallery-scroll 120s linear infinite;
+  will-change: transform;
 }
 .gallery-marquee__track:hover {
   animation-play-state: paused;
@@ -1034,24 +1035,11 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
     aspect-ratio: 4 / 5;
   }
 
-  /* Галерея: свайп вместо анимации — фото грузятся по мере прокрутки */
-  .gallery-marquee {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-    mask-image: none;
-    scrollbar-width: none;
-  }
-  .gallery-marquee::-webkit-scrollbar { display: none; }
-  .gallery-marquee__track {
-    animation: none;
-    width: max-content;
-  }
   .gallery-marquee__group img {
     width: 200px;
     height: 250px;
   }
+
   .tl-item:nth-child(even) .tl-badge { left: 18px; right: auto; }
   .tl-item::before {
     content: "★";
