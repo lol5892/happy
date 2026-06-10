@@ -87,6 +87,9 @@
 
   if (!files.length) return;
 
+  const section = document.getElementById("gallery");
+  if (!section) return;
+
   function photoSrc(name) {
     return "photos/" + name.split("/").map(encodeURIComponent).join("/");
   }
@@ -100,13 +103,34 @@
       img.src = photoSrc(name);
       img.alt = name.replace(/\.[^.]+$/, "");
       img.loading = "lazy";
+      img.decoding = "async";
       group.appendChild(img);
     });
     return group;
   }
 
-  track.appendChild(buildGroup(files, false));
-  track.appendChild(buildGroup(files, true));
+  function mountGallery() {
+    track.appendChild(buildGroup(files, false));
+    const addClone = () => track.appendChild(buildGroup(files, true));
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(addClone, { timeout: 4000 });
+    } else {
+      setTimeout(addClone, 2000);
+    }
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    mountGallery();
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    if (!entries[0].isIntersecting) return;
+    io.disconnect();
+    mountGallery();
+  }, { rootMargin: "300px" });
+
+  io.observe(section);
 })();
 
 // ---------- Лайтбокс галереи ----------
