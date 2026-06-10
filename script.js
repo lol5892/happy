@@ -126,12 +126,15 @@ function thumbPath(name) {
   if (!files.length) return;
 
   const section = document.getElementById("gallery");
-  if (!section) return;
+  const marquee = section?.querySelector(".gallery-marquee");
+  if (!section || !marquee) return;
 
   const isMobile = window.matchMedia("(max-width: 760px)").matches;
-  const MAX_CONCURRENT = isMobile ? 2 : 4;
+  const MAX_CONCURRENT = isMobile ? 2 : 3;
   let loading = 0;
   const queue = [];
+  let scanTimer = null;
+  let mounted = false;
 
   function pumpQueue() {
     while (loading < MAX_CONCURRENT && queue.length) {
@@ -157,6 +160,34 @@ function thumbPath(name) {
     pumpQueue();
   }
 
+  function isVisibleInMarquee(img) {
+    const box = marquee.getBoundingClientRect();
+    const rect = img.getBoundingClientRect();
+    return rect.right > box.left + 4
+      && rect.left < box.right - 4
+      && rect.bottom > box.top
+      && rect.top < box.bottom;
+  }
+
+  function scanVisibleImages() {
+    track.querySelectorAll("img[data-src]").forEach((img) => {
+      if (img.dataset.loaded) return;
+      if (isVisibleInMarquee(img)) queueLoad(img);
+    });
+  }
+
+  function startScanLoop() {
+    if (scanTimer) return;
+    scanVisibleImages();
+    scanTimer = window.setInterval(scanVisibleImages, 350);
+  }
+
+  function stopScanLoop() {
+    if (!scanTimer) return;
+    clearInterval(scanTimer);
+    scanTimer = null;
+  }
+
   function createImg(name) {
     const img = document.createElement("img");
     img.alt = name.replace(/\.[^.]+$/, "");
@@ -175,56 +206,38 @@ function thumbPath(name) {
     return group;
   }
 
-  let imgObserver = null;
-
-  function watchImages(root) {
-    if (!("IntersectionObserver" in window)) {
-      root.querySelectorAll("img[data-src]").forEach((img) => queueLoad(img));
-      return;
-    }
-    if (!imgObserver) {
-      imgObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            queueLoad(entry.target);
-            imgObserver.unobserve(entry.target);
-          });
-        },
-        { rootMargin: "120px" }
-      );
-    }
-    root.querySelectorAll("img[data-src]").forEach((img) => imgObserver.observe(img));
-  }
-
   function mountGallery() {
+    if (mounted) return;
+    mounted = true;
+
     track.appendChild(buildGroup(files, false));
-    watchImages(track);
+    scanVisibleImages();
 
     const addClone = () => {
-      const clone = buildGroup(files, true);
-      track.appendChild(clone);
-      watchImages(clone);
+      track.appendChild(buildGroup(files, true));
+      scanVisibleImages();
     };
     if ("requestIdleCallback" in window) {
-      requestIdleCallback(addClone, { timeout: 8000 });
+      requestIdleCallback(addClone, { timeout: 6000 });
     } else {
-      setTimeout(addClone, 4000);
+      setTimeout(addClone, 3000);
     }
+
+    startScanLoop();
   }
 
-  if (!("IntersectionObserver" in window)) {
+  if ("IntersectionObserver" in window) {
+    const sectionIo = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        mountGallery();
+      } else {
+        stopScanLoop();
+      }
+    }, { rootMargin: "200px" });
+    sectionIo.observe(section);
+  } else {
     mountGallery();
-    return;
   }
-
-  const io = new IntersectionObserver((entries) => {
-    if (!entries[0].isIntersecting) return;
-    io.disconnect();
-    mountGallery();
-  }, { rootMargin: "150px" });
-
-  io.observe(section);
 })();
 
 // ---------- Лайтбокс галереи ----------

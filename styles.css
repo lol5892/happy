@@ -25,11 +25,20 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--nav-h) + 12px); }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--nav-h) + 12px);
+  overflow-x: hidden;
+  max-width: 100%;
+}
 
 .page {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 /* ===================== НАВИГАЦИЯ ===================== */
@@ -102,10 +111,14 @@ body {
     radial-gradient(circle at 50% 92%, rgba(216, 236, 251, 0.6), transparent 40%),
     var(--cream);
   overflow-x: hidden;
+  max-width: 100%;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
   line-height: 1.6;
 }
 
 img { max-width: 100%; height: auto; }
+.gallery-marquee__group img { max-width: none; }
 
 h1, h2, h3, p { overflow-wrap: break-word; }
 h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
@@ -617,7 +630,9 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 
 /* ===================== СЕКЦИИ — единый фон через body + шарики ===================== */
 .section.gallery {
-  max-width: none;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
   padding-left: 0;
   padding-right: 0;
 }
@@ -779,6 +794,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 }
 .gallery-marquee {
   width: 100%;
+  max-width: 100%;
   overflow: hidden;
   margin-top: 8px;
   padding: 10px 0 18px;
@@ -787,7 +803,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 .gallery-marquee__track {
   display: flex;
   width: max-content;
-  animation: gallery-scroll 120s linear infinite;
+  animation: gallery-scroll 180s linear infinite;
   will-change: transform;
 }
 .gallery-marquee__track:hover {
