@@ -18,10 +18,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comfortaa:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script>
-    if (!location.hash && "scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-      scrollTo(0, 0);
-    }
+    (function () {
+      if (location.hash) return;
+      function goTop() {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      goTop();
+      document.addEventListener("DOMContentLoaded", goTop);
+      window.addEventListener("load", goTop);
+      window.addEventListener("pageshow", goTop);
+      setTimeout(goTop, 50);
+      setTimeout(goTop, 300);
+    })();
   </script>
 </head>
 <body>
@@ -409,7 +420,7 @@
       <h2>Наши любимые моменты</h2>
       <p class="lead">Самые тёплые кадры этого волшебного года.</p>
     </div>
-    <div class="gallery-marquee reveal" aria-label="Наши любимые моменты">
+    <div class="gallery-marquee" aria-label="Наши любимые моменты">
       <div class="gallery-marquee__track" id="gallery-track"></div>
     </div>
   </section>

@@ -7,11 +7,16 @@
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
   function scrollToTopUnlessHash() {
-    if (!location.hash) window.scrollTo(0, 0);
+    if (location.hash) return;
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }
 
   scrollToTopUnlessHash();
   window.addEventListener("pageshow", scrollToTopUnlessHash);
+  window.addEventListener("load", scrollToTopUnlessHash);
+  requestAnimationFrame(scrollToTopUnlessHash);
 })();
 
 function photoPath(name) {
@@ -170,9 +175,18 @@ function thumbPath(name) {
   }
 
   function scanVisibleImages() {
-    track.querySelectorAll("img[data-src]").forEach((img) => {
-      if (img.dataset.loaded) return;
+    track.querySelectorAll("img").forEach((img) => {
+      if (img.dataset.loaded || !img.dataset.src) return;
       if (isVisibleInMarquee(img)) queueLoad(img);
+    });
+  }
+
+  function preloadInitial() {
+    const count = isMobile ? 6 : 10;
+    track.querySelectorAll("img").forEach((img, index) => {
+      if (index < count && img.dataset.src && !img.dataset.loaded) {
+        queueLoad(img);
+      }
     });
   }
 
@@ -211,18 +225,9 @@ function thumbPath(name) {
     mounted = true;
 
     track.appendChild(buildGroup(files, false));
-    scanVisibleImages();
-
-    const addClone = () => {
-      track.appendChild(buildGroup(files, true));
-      scanVisibleImages();
-    };
-    if ("requestIdleCallback" in window) {
-      requestIdleCallback(addClone, { timeout: 6000 });
-    } else {
-      setTimeout(addClone, 3000);
-    }
-
+    track.appendChild(buildGroup(files, true));
+    track.classList.add("is-ready");
+    preloadInitial();
     startScanLoop();
   }
 
@@ -230,10 +235,11 @@ function thumbPath(name) {
     const sectionIo = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         mountGallery();
+        startScanLoop();
       } else {
         stopScanLoop();
       }
-    }, { rootMargin: "200px" });
+    }, { rootMargin: "120px" });
     sectionIo.observe(section);
   } else {
     mountGallery();
