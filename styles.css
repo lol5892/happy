@@ -808,6 +808,10 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   box-shadow: var(--shadow-sm);
   cursor: zoom-in;
   transition: transform .3s ease;
+  background: var(--sky-soft);
+}
+.gallery-marquee__group img.is-loading {
+  opacity: 0.55;
 }
 .gallery-marquee__group img:hover {
   transform: scale(1.04) rotate(-1deg);
@@ -1028,6 +1032,26 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   }
   .tl-photo img, .tl-carousel {
     aspect-ratio: 4 / 5;
+  }
+
+  /* Галерея: свайп вместо анимации — фото грузятся по мере прокрутки */
+  .gallery-marquee {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    mask-image: none;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .gallery-marquee::-webkit-scrollbar { display: none; }
+  .gallery-marquee__track {
+    animation: none;
+    width: max-content;
+  }
+  .gallery-marquee__group img {
+    scroll-snap-align: start;
+    width: 200px;
+    height: 250px;
   }
   .tl-item:nth-child(even) .tl-badge { left: 18px; right: auto; }
   .tl-item::before {

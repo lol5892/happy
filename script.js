@@ -2,6 +2,46 @@
 //  Мирону 1 годик — интерактив
 // ============================================================
 
+function isCloudflareHost() {
+  const h = location.hostname;
+  return h.endsWith(".pages.dev") || h.includes("miroshegodik");
+}
+
+function cfImage(srcOrPath, width, quality = 80) {
+  let path = srcOrPath;
+  if (srcOrPath.includes("://")) {
+    try {
+      path = new URL(srcOrPath).pathname;
+    } catch {
+      return srcOrPath;
+    }
+  }
+  path = path.replace(/^\//, "");
+  return `/cdn-cgi/image/width=${width},quality=${quality},format=auto/${path}`;
+}
+
+function photoPath(name) {
+  return "photos/" + name.split("/").map(encodeURIComponent).join("/");
+}
+
+// Уменьшенные версии для истории и семьи (Cloudflare сжимает на лету)
+(function optimizePageImages() {
+  if (!isCloudflareHost()) return;
+
+  document.querySelectorAll(
+    ".hero-photo img, .tl-photo > img, .fam-photo img, .family-all img"
+  ).forEach((img) => {
+    const src = img.getAttribute("src");
+    if (!src || src.includes("cdn-cgi/image")) return;
+    const w = img.closest(".hero-photo")
+      ? 900
+      : img.closest(".family-all")
+        ? 960
+        : 560;
+    img.src = cfImage(src, w, 82);
+  });
+})();
+
 // ---------- Обратный отсчёт до 20 июня 2026, 15:00 ----------
 (function countdown() {
   const target = new Date("2026-06-20T15:00:00").getTime();
@@ -61,11 +101,28 @@
   document.querySelectorAll(".tl-carousel").forEach((carousel) => {
     const slides = carousel.querySelectorAll(".tl-carousel__img");
     if (slides.length < 2) return;
+
+    slides.forEach((slide) => {
+      if (slide.classList.contains("is-active")) return;
+      const src = slide.getAttribute("src");
+      if (!src) return;
+      slide.dataset.deferredSrc = isCloudflareHost() ? cfImage(src, 560, 82) : src;
+      slide.removeAttribute("src");
+    });
+
+    function ensureLoaded(slide) {
+      if (slide.dataset.deferredSrc && !slide.getAttribute("src")) {
+        slide.src = slide.dataset.deferredSrc;
+      }
+    }
+
     const interval = parseInt(carousel.dataset.interval, 10) || 1500;
     let index = 0;
     setInterval(() => {
       slides[index].classList.remove("is-active");
       index = (index + 1) % slides.length;
+      ensureLoaded(slides[index]);
+      ensureLoaded(slides[(index + 1) % slides.length]);
       slides[index].classList.add("is-active");
     }, interval);
   });
@@ -90,32 +147,96 @@
   const section = document.getElementById("gallery");
   if (!section) return;
 
-  function photoSrc(name) {
-    return "photos/" + name.split("/").map(encodeURIComponent).join("/");
+  const useCf = isCloudflareHost();
+  const isMobile = window.matchMedia("(max-width: 760px)").matches;
+  const MAX_CONCURRENT = isMobile ? 2 : 4;
+  let loading = 0;
+  const queue = [];
+
+  function thumbSrc(name) {
+    const path = photoPath(name);
+    return useCf ? cfImage(path, 400, 78) : path;
+  }
+
+  function pumpQueue() {
+    while (loading < MAX_CONCURRENT && queue.length) {
+      const { img, src } = queue.shift();
+      loading += 1;
+      const done = () => {
+        loading -= 1;
+        img.classList.remove("is-loading");
+        pumpQueue();
+      };
+      img.addEventListener("load", done, { once: true });
+      img.addEventListener("error", done, { once: true });
+      img.src = src;
+    }
+  }
+
+  function queueLoad(img) {
+    const src = img.dataset.src;
+    if (!src || img.dataset.loaded) return;
+    img.dataset.loaded = "1";
+    img.classList.add("is-loading");
+    queue.push({ img, src });
+    pumpQueue();
+  }
+
+  function createImg(name) {
+    const img = document.createElement("img");
+    img.alt = name.replace(/\.[^.]+$/, "");
+    img.decoding = "async";
+    img.dataset.src = thumbSrc(name);
+    img.dataset.full = photoPath(name);
+    img.classList.add("is-loading");
+    return img;
   }
 
   function buildGroup(list, hidden) {
     const group = document.createElement("div");
     group.className = "gallery-marquee__group";
     if (hidden) group.setAttribute("aria-hidden", "true");
-    list.forEach((name) => {
-      const img = document.createElement("img");
-      img.src = photoSrc(name);
-      img.alt = name.replace(/\.[^.]+$/, "");
-      img.loading = "lazy";
-      img.decoding = "async";
-      group.appendChild(img);
-    });
+    list.forEach((name) => group.appendChild(createImg(name)));
     return group;
+  }
+
+  let imgObserver = null;
+
+  function watchImages(root) {
+    if (!("IntersectionObserver" in window)) {
+      root.querySelectorAll("img[data-src]").forEach((img) => queueLoad(img));
+      return;
+    }
+    if (!imgObserver) {
+      imgObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            queueLoad(entry.target);
+            imgObserver.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "120px" }
+      );
+    }
+    root.querySelectorAll("img[data-src]").forEach((img) => imgObserver.observe(img));
   }
 
   function mountGallery() {
     track.appendChild(buildGroup(files, false));
-    const addClone = () => track.appendChild(buildGroup(files, true));
+    watchImages(track);
+
+    if (isMobile) return;
+
+    const addClone = () => {
+      const clone = buildGroup(files, true);
+      track.appendChild(clone);
+      watchImages(clone);
+    };
     if ("requestIdleCallback" in window) {
-      requestIdleCallback(addClone, { timeout: 4000 });
+      requestIdleCallback(addClone, { timeout: 8000 });
     } else {
-      setTimeout(addClone, 2000);
+      setTimeout(addClone, 4000);
     }
   }
 
@@ -128,7 +249,7 @@
     if (!entries[0].isIntersecting) return;
     io.disconnect();
     mountGallery();
-  }, { rootMargin: "300px" });
+  }, { rootMargin: "400px" });
 
   io.observe(section);
 })();
@@ -162,7 +283,7 @@
 
   marquee.addEventListener("click", (e) => {
     if (e.target instanceof HTMLImageElement && e.target.closest(".gallery-marquee__group")) {
-      open(e.target.src, e.target.alt);
+      open(e.target.dataset.full || e.target.src, e.target.alt);
     }
   });
 
