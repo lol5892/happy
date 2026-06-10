@@ -201,7 +201,7 @@
 
   async function notifyTelegram(name, answer, guests) {
     try {
-      const res = await fetch("rsvp.php", {
+      const res = await fetch("/api/rsvp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, answer, guests }),

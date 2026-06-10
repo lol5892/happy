@@ -31,6 +31,12 @@ def copy_file(src: Path, dst: Path) -> None:
     shutil.copy2(src, dst)
 
 
+def copy_script_for_hosting() -> None:
+    text = (ROOT / "script.js").read_text(encoding="utf-8")
+    text = text.replace('fetch("/api/rsvp"', 'fetch("rsvp.php"')
+    (DIST / "script.js").write_text(text, encoding="utf-8")
+
+
 def write_hosting_files() -> None:
     (DIST / "robots.txt").write_text(
         "User-agent: *\nAllow: /\n",
@@ -66,8 +72,9 @@ def build() -> None:
         shutil.rmtree(DIST)
     DIST.mkdir()
 
-    for name in ("index.html", "styles.css", "script.js", "rsvp.php", "rsvp-config.example.php"):
+    for name in ("index.html", "styles.css", "rsvp.php", "rsvp-config.example.php"):
         copy_file(ROOT / name, DIST / name)
+    copy_script_for_hosting()
 
     assets_src = ROOT / "assets"
     for path in assets_src.rglob("*"):
