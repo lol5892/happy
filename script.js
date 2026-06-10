@@ -2,6 +2,18 @@
 //  Мирону 1 годик — интерактив
 // ============================================================
 
+// Всегда открывать сайт с hero, а не с прошлой позиции прокрутки
+(function initScroll() {
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+  function scrollToTopUnlessHash() {
+    if (!location.hash) window.scrollTo(0, 0);
+  }
+
+  scrollToTopUnlessHash();
+  window.addEventListener("pageshow", scrollToTopUnlessHash);
+})();
+
 function photoPath(name) {
   return "photos/" + name.split("/").map(encodeURIComponent).join("/");
 }
@@ -212,7 +224,7 @@ function thumbPath(name) {
     if (!entries[0].isIntersecting) return;
     io.disconnect();
     mountGallery();
-  }, { rootMargin: "400px" });
+  }, { rootMargin: "150px" });
 
   io.observe(section);
 })();
