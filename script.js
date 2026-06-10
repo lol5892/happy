@@ -2,7 +2,7 @@
 //  Мирону 1 годик — интерактив
 // ============================================================
 
-// Дублируем фиксацию старта (на случай кэша без inline-скрипта в head)
+// Старт с hero при загрузке (без блокировки прокрутки)
 (function initScroll() {
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
@@ -11,13 +11,11 @@
       history.replaceState(null, "", location.pathname + location.search);
     }
     window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
   }
 
-  goTop();
-  window.addEventListener("pageshow", goTop);
-  window.addEventListener("load", goTop);
+  window.addEventListener("pageshow", function (e) {
+    if (e.persisted) goTop();
+  });
 })();
 
 function photoPath(name) {
