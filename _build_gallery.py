@@ -54,3 +54,4 @@ if n != 1:
 
 index.write_text(html, encoding="utf-8")
 print("gallery updated:", len(files), "photos")
+print("run _optimize_photos.py to refresh thumbs after adding photos")

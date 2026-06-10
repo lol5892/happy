@@ -2,45 +2,14 @@
 //  Мирону 1 годик — интерактив
 // ============================================================
 
-function isCloudflareHost() {
-  const h = location.hostname;
-  return h.endsWith(".pages.dev") || h.includes("miroshegodik");
-}
-
-function cfImage(srcOrPath, width, quality = 80) {
-  let path = srcOrPath;
-  if (srcOrPath.includes("://")) {
-    try {
-      path = new URL(srcOrPath).pathname;
-    } catch {
-      return srcOrPath;
-    }
-  }
-  path = path.replace(/^\//, "");
-  return `/cdn-cgi/image/width=${width},quality=${quality},format=auto/${path}`;
-}
-
 function photoPath(name) {
   return "photos/" + name.split("/").map(encodeURIComponent).join("/");
 }
 
-// Уменьшенные версии для истории и семьи (Cloudflare сжимает на лету)
-(function optimizePageImages() {
-  if (!isCloudflareHost()) return;
-
-  document.querySelectorAll(
-    ".hero-photo img, .tl-photo > img, .fam-photo img, .family-all img"
-  ).forEach((img) => {
-    const src = img.getAttribute("src");
-    if (!src || src.includes("cdn-cgi/image")) return;
-    const w = img.closest(".hero-photo")
-      ? 900
-      : img.closest(".family-all")
-        ? 960
-        : 560;
-    img.src = cfImage(src, w, 82);
-  });
-})();
+function thumbPath(name) {
+  const base = name.replace(/\.[^.]+$/, "");
+  return "photos/thumbs/" + encodeURIComponent(base + ".jpg");
+}
 
 // ---------- Обратный отсчёт до 20 июня 2026, 15:00 ----------
 (function countdown() {
@@ -106,7 +75,7 @@ function photoPath(name) {
       if (slide.classList.contains("is-active")) return;
       const src = slide.getAttribute("src");
       if (!src) return;
-      slide.dataset.deferredSrc = isCloudflareHost() ? cfImage(src, 560, 82) : src;
+      slide.dataset.deferredSrc = src;
       slide.removeAttribute("src");
     });
 
@@ -147,16 +116,10 @@ function photoPath(name) {
   const section = document.getElementById("gallery");
   if (!section) return;
 
-  const useCf = isCloudflareHost();
   const isMobile = window.matchMedia("(max-width: 760px)").matches;
   const MAX_CONCURRENT = isMobile ? 2 : 4;
   let loading = 0;
   const queue = [];
-
-  function thumbSrc(name) {
-    const path = photoPath(name);
-    return useCf ? cfImage(path, 400, 78) : path;
-  }
 
   function pumpQueue() {
     while (loading < MAX_CONCURRENT && queue.length) {
@@ -186,7 +149,7 @@ function photoPath(name) {
     const img = document.createElement("img");
     img.alt = name.replace(/\.[^.]+$/, "");
     img.decoding = "async";
-    img.dataset.src = thumbSrc(name);
+    img.dataset.src = thumbPath(name);
     img.dataset.full = photoPath(name);
     img.classList.add("is-loading");
     return img;

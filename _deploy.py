@@ -83,6 +83,7 @@ def build() -> None:
 
     gallery_files = read_gallery_files()
     photos_src = ROOT / "photos"
+    thumbs_src = photos_src / "thumbs"
     missing: list[str] = []
     copied = 0
     for name in gallery_files:
@@ -91,6 +92,9 @@ def build() -> None:
             missing.append(name)
             continue
         copy_file(src, DIST / "photos" / name)
+        thumb = thumbs_src / (src.stem + ".jpg")
+        if thumb.is_file():
+            copy_file(thumb, DIST / "photos" / "thumbs" / thumb.name)
         copied += 1
 
     write_hosting_files()
