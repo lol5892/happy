@@ -27,16 +27,19 @@ python _deploy.py
 
 ### Cloudflare Pages (основной способ)
 
-1. Создайте бота у [@BotFather](https://t.me/BotFather) → `/newbot` → скопируйте **токен**.
-2. Напишите боту `/start`.
+**Если бот уже есть** — нового создавать не нужно. Сайт просто шлёт RSVP через `sendMessage` вашему боту.
+
+1. Откройте [@BotFather](https://t.me/BotFather) → `/mybots` → выберите бота → **API Token** → скопируйте **токен**.
+2. Напишите боту `/start` с каждого аккаунта, куда должны приходить уведомления (или добавьте бота в группу и напишите там).
 3. Узнайте **chat_id**: откройте  
    `https://api.telegram.org/bot<ТОКЕН>/getUpdates`  
-   и найдите `"chat":{"id":123456789}`.
+   и найдите `"chat":{"id":123456789}`.  
+   Для группы id будет отрицательным, например `-1001234567890`.
 4. Cloudflare → **Workers & Pages** → проект **happy** → **Settings** → **Environment variables**:
-   - `TELEGRAM_BOT_TOKEN` — токен бота
+   - `TELEGRAM_BOT_TOKEN` — токен вашего бота
    - `TELEGRAM_CHAT_IDS` — chat_id через запятую, например `123456789,987654321`
 5. Добавьте для **Production** (и Preview, если нужно) → **Save**.
-6. **Deployments** → **Retry deployment** или дождитесь нового деплоя после `git push`.
+6. **Deployments** → **Retry deployment** (после первого сохранения переменных).
 
 Проверка: отправьте форму на сайте — в Telegram должно прийти сообщение.
 
