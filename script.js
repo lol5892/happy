@@ -11,7 +11,7 @@
     mins: document.getElementById("cd-mins"),
     secs: document.getElementById("cd-secs"),
   };
-  const box = document.getElementById("countdown");
+  const box = document.getElementById("countdown-timer");
   const done = document.getElementById("cd-done");
 
   function pad(n) { return String(n).padStart(2, "0"); }

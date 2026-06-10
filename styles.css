@@ -89,12 +89,12 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 .section {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 70px 22px;
+  padding: 56px 22px;
   position: relative;
   z-index: 2;
 }
 
-.section-head { text-align: center; margin-bottom: 48px; }
+.section-head { text-align: center; margin-bottom: 36px; }
 
 .kicker {
   display: inline-block;
@@ -112,16 +112,16 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 }
 
 .section-head h2 {
-  font-size: clamp(1.9rem, 5vw, 3rem);
+  font-size: clamp(1.75rem, 4.5vw, 2.65rem);
   color: var(--blue-deep);
   font-weight: 700;
-  text-shadow: 2px 2px 0 var(--white), 4px 4px 0 rgba(142, 195, 236, 0.4);
+  text-shadow: 1px 1px 0 var(--white), 3px 3px 0 rgba(142, 195, 236, 0.35);
 }
 
 .lead {
-  max-width: 640px;
-  margin: 18px auto 0;
-  font-size: 1.05rem;
+  max-width: 580px;
+  margin: 14px auto 0;
+  font-size: 1rem;
   color: var(--ink);
 }
 .lead b { color: var(--blue); }
@@ -174,7 +174,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 96px 20px 160px;
+  padding: 88px 20px 128px;
   overflow: hidden;
 }
 .hero-inner {
@@ -522,7 +522,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 
 /* Заключение блока «История» — как section-head */
 .story-outro {
-  margin-top: 58px;
+  margin-top: 44px;
   margin-bottom: 0;
 }
 .story-outro .lead + .lead {
@@ -553,52 +553,74 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 
 /* ===================== ОБРАТНЫЙ ОТСЧЁТ ===================== */
 .countdown-section {
+  position: relative;
+  z-index: 4;
+  max-width: 760px;
+  margin: -56px auto 0;
+  padding: 0 22px;
+}
+.countdown-card {
   text-align: center;
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(142, 195, 236, 0.4);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  margin-top: 0;
-  margin-bottom: 20px;
+  padding: clamp(22px, 4vw, 34px) clamp(18px, 4vw, 32px);
+  box-shadow: var(--shadow);
+}
+.countdown-kicker {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
 }
 .countdown-section h2 {
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(1.35rem, 3.6vw, 1.9rem);
   color: var(--blue-deep);
-  margin-bottom: 30px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  text-shadow: none;
 }
 .countdown {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 480px;
+  margin: 0 auto;
 }
 .cd-box {
-  background: var(--white);
-  border: 3px dashed var(--blue-line);
-  border-radius: 20px;
-  padding: 20px 14px;
-  min-width: 96px;
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(180deg, var(--sky-soft) 0%, rgba(216, 236, 251, 0.65) 100%);
+  border-radius: 16px;
+  padding: 14px 6px 12px;
+  min-width: 0;
 }
 .cd-num {
   display: block;
   font-family: "Fredoka", sans-serif;
   font-weight: 700;
-  font-size: 2.6rem;
-  color: var(--blue);
+  font-size: clamp(1.85rem, 5vw, 2.35rem);
+  color: var(--blue-deep);
   line-height: 1;
+  margin-bottom: 4px;
 }
 .cd-label {
-  font-size: .85rem;
-  color: var(--ink);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 0.78rem;
+  color: var(--blue);
+  letter-spacing: 0.02em;
 }
 .cd-done {
-  margin-top: 22px;
+  margin-top: 18px;
   font-family: "Fredoka", sans-serif;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   color: var(--gold);
+}
+
+.countdown-section + .story {
+  padding-top: 44px;
 }
 
 /* ===================== ДЕТАЛИ ===================== */
@@ -983,7 +1005,12 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   .nav-links { justify-content: center; }
   .nav-links a { font-size: .82rem; padding: 5px 10px; }
 
-  .hero { padding: 84px 18px 130px; }
+  .hero { padding: 78px 18px 108px; }
+
+  .countdown-section {
+    margin-top: -44px;
+    padding: 0 16px;
+  }
 
   /* Таймлайн в одну колонку */
   .timeline { gap: 38px; }
@@ -1023,10 +1050,12 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
 
 /* Телефоны */
 @media (max-width: 480px) {
-  .section { padding: 46px 14px; }
+  .section { padding: 40px 14px; }
+  .countdown-section + .story { padding-top: 32px; }
   .kicker { font-size: 0.72rem; letter-spacing: 1px; padding: 7px 14px; }
 
-  .hero { padding: 82px 14px 120px; }
+  .hero { padding: 74px 14px 96px; }
+  .countdown-section { margin-top: -36px; }
   .hero-pre { margin-bottom: 6px; font-size: 0.95rem; }
   .hero-title { margin-bottom: 16px; }
   .hero-title span { font-size: clamp(2.1rem, 12vw, 2.8rem); }
@@ -1039,10 +1068,15 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   .cloud-badge__text::after { right: 8px; }
 
   /* Обратный отсчёт — сетка 2×2 */
-  .countdown { gap: 12px; }
-  .cd-box { min-width: 0; flex: 1 1 40%; max-width: 46%; padding: 16px 8px; }
-  .cd-num { font-size: 2.1rem; }
-  .cd-label { font-size: .72rem; letter-spacing: .5px; }
+  .countdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    max-width: none;
+  }
+  .cd-box { padding: 12px 6px 10px; }
+  .cd-num { font-size: 1.95rem; }
+  .cd-label { font-size: .72rem; }
+  .countdown-section h2 { margin-bottom: 14px; }
 
   .fam-card { padding: 22px 24px; min-width: 0; width: 100%; max-width: 280px; }
   .fam-photo { width: 110px; height: 110px; }
