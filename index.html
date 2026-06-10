@@ -23,8 +23,8 @@
   <nav class="site-nav" aria-label="Навигация по сайту">
     <a class="nav-brand" href="#">Мироша · 1 годик</a>
     <div class="nav-links">
-      <a href="#story">История</a>
       <a href="#countdown">Отсчёт</a>
+      <a href="#story">История</a>
       <a href="#details">Детали</a>
       <a href="#family">Семья</a>
       <a href="#gallery">Галерея</a>
@@ -119,7 +119,7 @@
 
       <p class="hero-name reveal">Мирон</p>
 
-      <a href="#story" class="scroll-hint reveal" aria-label="Листай вниз">
+      <a href="#countdown" class="scroll-hint reveal" aria-label="Листай вниз">
         <span>наша история</span>
         <span class="chevron">⌄</span>
       </a>
@@ -132,6 +132,18 @@
       <div class="cloud c3"></div>
     </div>
   </header>
+
+  <!-- ====================== ОБРАТНЫЙ ОТСЧЁТ ====================== -->
+  <section id="countdown" class="section countdown-section reveal">
+    <h2>До праздника осталось</h2>
+    <div class="countdown" id="countdown" role="timer" aria-live="polite">
+      <div class="cd-box"><span class="cd-num" id="cd-days">--</span><span class="cd-label">дней</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">часов</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">минут</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">секунд</span></div>
+    </div>
+    <p class="cd-done" id="cd-done" hidden>🎉 Сегодня наш праздник! Мирону 1 годик! 🎉</p>
+  </section>
 
   <!-- ====================== ИСТОРИЯ ====================== -->
   <section id="story" class="section story">
@@ -318,18 +330,6 @@
         rel="noopener noreferrer"
       >🎁 Выбрать подарок</a>
     </div>
-  </section>
-
-  <!-- ====================== ОБРАТНЫЙ ОТСЧЁТ ====================== -->
-  <section id="countdown" class="section countdown-section reveal">
-    <h2>До праздника осталось</h2>
-    <div class="countdown" id="countdown" role="timer" aria-live="polite">
-      <div class="cd-box"><span class="cd-num" id="cd-days">--</span><span class="cd-label">дней</span></div>
-      <div class="cd-box"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">часов</span></div>
-      <div class="cd-box"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">минут</span></div>
-      <div class="cd-box"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">секунд</span></div>
-    </div>
-    <p class="cd-done" id="cd-done" hidden>🎉 Сегодня наш праздник! Мирону 1 годик! 🎉</p>
   </section>
 
   <!-- ====================== ДЕТАЛИ ====================== -->

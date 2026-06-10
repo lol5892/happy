@@ -557,7 +557,7 @@ h1, h2, h3 { font-family: "Fredoka", sans-serif; line-height: 1.05; }
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  margin-top: 20px;
+  margin-top: 0;
   margin-bottom: 20px;
 }
 .countdown-section h2 {
